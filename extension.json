@@ -27,8 +27,7 @@
                 "init.js"
             ],
             "styles": [
-                "prism/prism.css",
-                "custom.css"
+                "prism/prism.css"
             ],
             "targets": [ "desktop", "mobile" ]
         }
