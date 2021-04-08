@@ -2,7 +2,8 @@
 
 This extension allows source code to be syntax highlighted on wiki pages.
 
-This works as a drop-in replacement for the Highlightjs Integration by Nikus Pokus.
+This extension is derived from the Highlightjs Integration by Nikus Pokus, and
+works as a drop-in replacement.
 
 == Requirements ==
 
