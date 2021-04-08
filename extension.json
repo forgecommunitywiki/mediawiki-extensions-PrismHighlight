@@ -2,7 +2,7 @@
     "name": "Prism Highlight",
     "version": "1.0",
     "author": "[https://www.mediawiki.org/wiki/User:SciWhiz12 SciWhiz12], forgecommunitywiki",
-    "url": "https://github.com/forgecommunitywiki/PrismHighlight",
+    "url": "https://github.com/forgecommunitywiki/mediawiki-extensions-PrismHighlight",
     "license-name": "AGPL-3.0",
     "description": "Allows to use the client-side syntax highlighter [https://prismjs.com Prism] in MediaWiki; derived from the [https://www.mediawiki.org/wiki/Extension:Highlightjs_Integration highlight.js Integration extension by Nikus Pokus]",
     "type": "other",
