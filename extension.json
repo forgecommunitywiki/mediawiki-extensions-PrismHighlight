@@ -1,0 +1,52 @@
+{
+    "name": "Prism Highlight",
+    "version": "1.0",
+    "author": "[https://www.mediawiki.org/wiki/User:SciWhiz12 SciWhiz12], forgecommunitywiki",
+    "url": "https://github.com/forgecommunitywiki/PrismHighlight",
+    "license-name": "AGPL-3.0",
+    "description": "Allows to use the client-side syntax highlighter [https://prismjs.com Prism] in MediaWiki; derived from the [https://www.mediawiki.org/wiki/Extension:Highlightjs_Integration highlight.js Integration extension by Nikus Pokus]",
+    "type": "other",
+    "require": {
+		"MediaWiki": ">= 1.35"
+	},
+    "Hooks": {
+        "ParserFirstCallInit": [
+            "PrismHighlight::onParserFirstCallInit"
+        ],
+        "BeforePageDisplay": [
+            "PrismHighlight::onBeforePageDisplay"
+        ]
+    },
+    "AutoloadClasses": {
+        "PrismHighlight": "PrismHighlight.class.php"
+    },
+    "ResourceModules": {
+        "ext.PrismHighlight": {
+            "scripts": [
+                "prism/prism.js",
+                "init.js"
+            ],
+            "styles": [
+                "prism/prism.css",
+                "custom.css"
+            ],
+            "targets": [ "desktop", "mobile" ]
+        }
+    },
+    "ResourceFileModulePaths": {
+        "localBasePath": ""
+    },
+    "config": {
+        "HighlightTags": [
+            "syntaxhighlight",
+            "source"
+        ],
+        "LangMapping": {
+            "tsql": "sql",
+            "mysql": "sql",
+            "xaml": "xml",
+            "mediawiki": "markdown"
+        }
+    },
+    "manifest_version": 1
+}
