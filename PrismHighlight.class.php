@@ -1,34 +1,53 @@
 <?php
 
-class PrismHighlight {
-
-    public static function onBeforePageDisplay(OutputPage &$out, Skin &$skin) {
+class PrismHighlight
+{
+    /**
+     * @return true
+     */
+    public static function onBeforePageDisplay(OutputPage &$out, Skin &$skin): bool
+    {
         $out->addModules('ext.PrismHighlight');
+
         return true;
     }
 
-    public static function onParserFirstCallInit(Parser &$parser) {
+    /**
+     * @return true
+     */
+    public static function onParserFirstCallInit(Parser &$parser): bool
+    {
         global $wgHighlightTags;
 
         foreach ($wgHighlightTags as $tag) {
             // $parser->setHook( tag, array( class, method ) );
-            $parser->setHook($tag, array('PrismHighlight', 'renderSyntaxhighlight'));
-		    }
+            $parser->setHook($tag, ['PrismHighlight', 'renderSyntaxhighlight']);
+        }
 
-		    return true;
-	  }
+        return true;
+    }
 
-    public static function renderSyntaxhighlight($in, $param = array(), $parser = null, $frame = false) {
+    /**
+     * @param string $in
+     * @param array $param
+     * @param mixed|null $parser
+     * @param bool $frame
+     *
+     * @return string HTML
+     */
+    public static function renderSyntaxhighlight(string $in, array $param = array(), $parser = null, $frame = false): string
+    {
         global $wgLangMapping;
 
-        // get the language
-        //<syntaxhighlight lang="bash">
-        //</syntaxhighlight>
-        $lang = isset($param['lang']) ? $param['lang'] : '';
+        /**
+         * Get the language
+         * E.g.: <syntaxhighlight lang="bash"></syntaxhighlight> would return "bash"
+         * @var string $lang
+         */
+        $lang = $param['lang'] ?? '';
 
         $highlightClass = 'code2highlight';
-        if ($lang == 'nohighlight')
-        {
+        if ($lang === 'nohighlight') {
             $highlightClass = 'nohighlight';
             $lang = '';
         }
@@ -39,13 +58,14 @@ class PrismHighlight {
         }
 
         // class
+        /** @var array<string> $htmlAttribs */
         $htmlAttribs['class'] = isset($param['class']) ? $param['class'] . ' ' . $highlightClass : $highlightClass;
         if (!empty($lang)) {
             $htmlAttribs['class'] .= " lang-$lang";
         }
+
         // id
-        if (isset( $param['id']))
-        {
+        if (isset($param['id'])) {
             $htmlAttribs['id'] = $param['id'];
         }
 
@@ -58,12 +78,10 @@ class PrismHighlight {
         if ($inline) {
             $htmlAttribs['style'] = 'display: inline;';
             $out = Html::rawElement('code', $htmlAttribs, $code);
-            return $out;
-        }
-        else {
+        } else {
             $out = Html::rawElement('pre', $htmlAttribs, $code);
-            return $out;
         }
-    }
 
+        return $out;
+    }
 }
